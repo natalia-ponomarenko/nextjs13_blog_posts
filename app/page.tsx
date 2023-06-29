@@ -1,95 +1,91 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client';
+import React, { useEffect } from 'react';
+import 'bulma/bulma.sass';
+import '@fortawesome/fontawesome-free/css/all.css';
 
-export default function Home() {
+import classNames from 'classnames';
+import { PostsList } from './components/PostsList';
+import { PostDetails } from './components/PostDetails';
+import { UserSelector } from './components/UserSelector';
+import { Loader } from './components/Loader/Loader';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import * as usersActions from '@/redux/features/users/users';
+import * as postsActions from '@/redux/features/posts/posts';
+import { removeSelectedPost } from '@/redux/features/selectedPost/selectedPost';
+
+const Home: React.FC = () => {
+  console.log('render home');
+  const dispatch = useAppDispatch();
+  const { author } = useAppSelector((state) => state.author);
+  const { selectedPost } = useAppSelector((state) => state.selectedPost);
+  const {
+    items: posts,
+    loaded,
+    hasError,
+  } = useAppSelector((state) => state.posts);
+
+  useEffect(() => {
+    dispatch(usersActions.init());
+  }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(removeSelectedPost());
+
+    author
+      ? dispatch(postsActions.init(author.id))
+      : dispatch(postsActions.setPosts([]));
+  }, [author?.id, author, dispatch]);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="section">
+      <div className="container">
+        <div className="tile is-ancestor">
+          <div className="tile is-parent">
+            <div className="tile is-child box is-success">
+              <div className="block">
+                <UserSelector />
+              </div>
+
+              <div className="block">
+                {!author && <p>No user selected</p>}
+
+                {author && !loaded && <Loader />}
+
+                {author && loaded && hasError && (
+                  <div className="notification is-danger">
+                    Something went wrong!
+                  </div>
+                )}
+
+                {author && loaded && !hasError && !posts.length && (
+                  <div className="notification is-warning">No posts yet</div>
+                )}
+                {author && loaded && !hasError && posts.length > 0 && (
+                  <PostsList />
+                )}
+              </div>
+            </div>
+          </div>
+
+          <div
+            className={classNames(
+              'tile',
+              'is-parent',
+              'is-8-desktop',
+              'Sidebar',
+              {
+                'Sidebar--open': selectedPost,
+              }
+            )}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <div className="tile is-child box is-success ">
+              {selectedPost && <PostDetails />}
+            </div>
+          </div>
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
     </main>
-  )
-}
+  );
+};
+
+export default Home;

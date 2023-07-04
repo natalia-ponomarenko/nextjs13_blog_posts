@@ -2,7 +2,7 @@ import './globals.scss';
 import { Montserrat } from 'next/font/google';
 import Header from './components/Header';
 import Footer from './components/Footer';
-import { ProviderWrapper } from '@/redux/services/provider';
+import { ClientProvider } from '@/redux/services/ClientProvider';
 
 const montserrat = Montserrat({
   weight: ['700', '400'],
@@ -10,7 +10,7 @@ const montserrat = Montserrat({
 });
 
 export const metadata = {
-  title: 'Blog Posts',
+  title: 'Next.js 13 Blog/News',
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
         style={{ height: '100vh' }}
       >
         <Header />
-        <ProviderWrapper>{children}</ProviderWrapper>
+        <ClientProvider>{children}</ClientProvider>
         <Footer />
       </body>
     </html>

@@ -13,6 +13,7 @@ function request<T>(
   method: RequestMethod = 'GET',
   data: any = null
 ): Promise<T> {
+  // eslint-disable-next-line no-undef
   const options: RequestInit = { method };
 
   if (data) {

@@ -8,7 +8,6 @@ import { NewCommentForm } from './NewCommentForm';
 import { Loader } from './Loader/Loader';
 
 export const PostDetails: React.FC = () => {
-  console.log('render post details');
   const dispatch = useAppDispatch();
   const { selectedPost } = useAppSelector((state) => state.selectedPost);
   const {

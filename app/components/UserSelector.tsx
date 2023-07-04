@@ -6,7 +6,6 @@ import { setAuthor } from '@/redux/features/author/author';
 import { Loader } from './Loader/Loader';
 
 export const UserSelector: React.FC = () => {
-  console.log('render users');
   const [expanded, setExpanded] = useState(false);
 
   const { users, loading, error } = useAppSelector((state) => state.users);

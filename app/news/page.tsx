@@ -1,14 +1,20 @@
 import { getNewsData } from '@/api/news';
 import NewsList from '../components/NewsList';
+import SearchBar from '../components/SearchBar';
 
-const News: React.FC = async () => {
-  const news = await getNewsData();
-  console.log(news)
+const News: React.FC = async ({ searchParams }) => {
+  const news = await getNewsData({
+    query: searchParams.query || '',
+  });
+
   return (
-    <>
-      <p>News Page</p>
-      <NewsList news={news} />
-    </>
+    <main className="section">
+      <div className="container">
+        <p>News Page</p>
+        <SearchBar />
+        <NewsList news={news} />
+      </div>
+    </main>
   );
 };
 

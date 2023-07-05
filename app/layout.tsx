@@ -3,6 +3,8 @@ import { Montserrat } from 'next/font/google';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { ClientProvider } from '@/redux/services/ClientProvider';
+import { Suspense } from 'react';
+import Loading from './loading';
 
 const montserrat = Montserrat({
   weight: ['700', '400'],
@@ -24,10 +26,13 @@ export default function RootLayout({
         className={montserrat.className}
         style={{ height: '100vh' }}
       >
-        <Header />
-        <ClientProvider>{children}</ClientProvider>
-        <Footer />
+        <Suspense fallback={<Loading />}>
+          <Header />
+          <ClientProvider>{children}</ClientProvider>
+          <Footer />
+        </Suspense>
       </body>
     </html>
   );
 }
+

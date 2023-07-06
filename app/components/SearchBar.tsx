@@ -1,70 +1,72 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+'use client';
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { LANGUAGES } from '@/utils/constants';
 
 const SearchBar = () => {
-  const [query, setQuery] = useState<string>("");
-  const [hasQueryParam, setHasQueryParam] = useState(false);
+  const [query, setQuery] = useState('');
+  const [language, setLanguage] = useState('en');
   const router = useRouter();
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSearch = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (query === "") {
-      return alert("Please fill in the search bar");
+    if (query === '') {
+      return alert('Please fill in the search bar');
     }
 
-    updateSeachParams(query.toLowerCase());
+    updateSearchParams();
   };
 
-  const updateSeachParams = (query: string) => {
-    const searchParams = new URLSearchParams(window.location.search);
-    setHasQueryParam(true);
+  const updateSearchParams = () => {
+    const queryParam = query
+      ? `query=${query.toLowerCase()}`
+      : '';
+    const languageParam = language
+      ? `language=${language}`
+      : '';
 
-    if (query) {
-      searchParams.set("query", query);
-    } else {
-      searchParams.delete("query");
-    }
+    const queryParams = [queryParam, languageParam].filter(Boolean).join('&');
 
-    const newPathName = `${
-      window.location.pathname
-    }?${searchParams.toString()}`;
-    router.push(newPathName);
+    router.push(`/news?${queryParams}`);
   };
 
   const handleReturn = () => {
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.delete("query");
-
-    setHasQueryParam(false);
-
-    const newPathName = `${
-      window.location.pathname
-    }?${searchParams.toString()}`;
-    router.push(newPathName);
-
-    setQuery("");
+    setQuery('');
+    setLanguage('en');
+    router.push('/news');
   };
 
   return (
-    <>
-      <form action="GET" onSubmit={handleSearch}>
+    <div>
+      <form onSubmit={handleSearch}>
         <input
           type="text"
-          name="product"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="border-2"
+          placeholder="Search..."
         />
+        <select
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          {Object.entries(LANGUAGES).map(([code, name]) => (
+            <option
+              key={code}
+              value={code}
+            >
+              {name}
+            </option>
+          ))}
+        </select>
+
         <button type="submit">Search</button>
       </form>
-      {hasQueryParam && (
-        <button onClick={handleReturn}>Get back to list</button>
-      )}
-    </>
+
+      <button onClick={handleReturn}>Return to the top US news</button>
+    </div>
   );
 };
 
 export default SearchBar;
+

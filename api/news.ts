@@ -1,13 +1,12 @@
-const API_KEY = '12891bf384c1432dbe12ed0b30fa5caf';
-const BASE_API = 'https://newsapi.org/v2/';
-const TOP_US_HEADLINES = `top-headlines?country=us&apiKey=${API_KEY}`;
+import { Filter } from "@/types/Filter";
+import { API_KEY, BASE_API, TOP_US_HEADLINES } from "@/utils/constants";
 
-export const getNewsData = async (filters) => {
+export const getNewsData = async (filters: Filter) => {
   let url = BASE_API;
-  let { query } = filters;
+  let { query, language } = filters;
 
   query
-    ? (url += `everything?q=${query}&apiKey=${API_KEY}`)
+    ? (url += `everything?q=${query}&language=${language}&apiKey=${API_KEY}`)
     : (url += TOP_US_HEADLINES);
 
   const res = await fetch(url);

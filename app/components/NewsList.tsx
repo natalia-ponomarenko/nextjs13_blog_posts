@@ -1,25 +1,30 @@
-import { News } from '@/types/News';
 import Link from 'next/link';
+import { store } from '@/redux/store';
+import { Article } from '@/types/News';
+import NewsCard from './NewsCard';
 
-type Props = {
-  news: News;
-};
+const NewsList: React.FC = () => {
+  const news = store.getState().news.setNews;
 
-const NewsList: React.FC<Props> = ({ news }) => {
   return (
     <div>
-      {news?.articles?.map((item) => {
-        return (
-          <Link
-            key={item.title}
-            href={item.url}
-            target="_blank"
-            rel="noopener"
-          >
-            <p>{item.title}</p>
-          </Link>
-        );
-      })}
+      {news && news.totalResults > 0 ? (
+        news.articles.map((article: Article) => {
+          return <NewsCard key={article.url} article={article} />
+          // return (
+          //   <Link
+          //     key={item.url}
+          //     href={item.url}
+          //     target="_blank"
+          //     rel="noopener"
+          //   >
+          //     <p>{item.title}</p>
+          //   </Link>
+          // );
+        })
+      ) : (
+        <p>No relevant news found. Try changing the language or check the spelling</p>
+      )}
     </div>
   );
 };

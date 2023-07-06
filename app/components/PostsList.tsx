@@ -1,4 +1,5 @@
 'use client';
+
 import classNames from 'classnames';
 import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
@@ -8,7 +9,6 @@ import {
 } from '@/redux/features/selectedPost/selectedPost';
 
 export const PostsList: React.FC = () => {
-  console.log('render posts');
   const dispatch = useAppDispatch();
   const { selectedPost } = useAppSelector((state) => state.selectedPost);
   const { items: posts } = useAppSelector((state) => state.posts);

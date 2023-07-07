@@ -1,10 +1,10 @@
 import './globals.scss';
 import { Montserrat } from 'next/font/google';
-import Header from './components/Header';
 import Footer from './components/Footer';
 import { ClientProvider } from '@/redux/services/ClientProvider';
 import { Suspense } from 'react';
 import Loading from './loading';
+import NavBar from './components/NavBar';
 
 const montserrat = Montserrat({
   weight: ['700', '400'],
@@ -27,8 +27,12 @@ export default function RootLayout({
         style={{ height: '100vh' }}
       >
         <Suspense fallback={<Loading />}>
-          <Header />
-          <ClientProvider>{children}</ClientProvider>
+          <NavBar />
+          <main className="section">
+            <div className="container pb-6">
+              <ClientProvider>{children}</ClientProvider>
+            </div>
+          </main>
           <Footer />
         </Suspense>
       </body>

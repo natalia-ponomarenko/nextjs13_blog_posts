@@ -5,7 +5,7 @@ import * as commentsActions from '@/redux/features/comments/comments';
 import * as commentsApi from '@/api/comments';
 import { CommentData } from '@/types/Comment';
 import { NewCommentForm } from './NewCommentForm';
-import { Loader } from './Loader/Loader';
+import { Loader } from '../Loader/Loader';
 
 export const PostDetails: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -106,3 +106,4 @@ export const PostDetails: React.FC = () => {
     </div>
   );
 };
+

@@ -6,7 +6,7 @@ export const getNewsData = async (filters: Filter) => {
   let { query, language } = filters;
 
   query
-    ? (url += `everything?q=${query}&language=${language}&apiKey=${API_KEY}`)
+    ? (url += `everything?q=${query}&language=${language}&searchIn=title&apiKey=${API_KEY}`)
     : (url += TOP_US_HEADLINES);
 
   const res = await fetch(url);

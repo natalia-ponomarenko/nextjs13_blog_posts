@@ -1,10 +1,6 @@
 const Home: React.FC = () => {
   return (
-    <main className="section">
-      <div className="container">
-        <h1>Welcome to the Home page</h1>
-      </div>
-    </main>
+      <h1 className="title has-text-centered is-size-3">Welcome to the Home Page</h1>
   );
 };
 

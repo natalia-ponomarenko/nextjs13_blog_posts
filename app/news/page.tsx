@@ -1,9 +1,10 @@
 import { getNewsData } from '@/api/news';
-import NewsList from '../components/NewsList';
-import SearchBar from '../components/SearchBar';
+import NewsList from '../components/news_components/NewsList';
+import SearchBar from '../components/news_components/SearchBar';
 import { store } from '@/redux/store';
 import { setNews } from '@/redux/features/news/news';
 import { Filter } from '@/types/Filter';
+import 'bulma/css/bulma.css';
 
 type Props = {
   searchParams: Filter;
@@ -18,13 +19,11 @@ const News: React.FC<Props> = async ({ searchParams }) => {
   store.dispatch(setNews(news));
 
   return (
-    <main className="section">
-      <div className="container">
-        <p>News Page</p>
-        <SearchBar />
-        <NewsList />
-      </div>
-    </main>
+    <>
+      <h1 className="title has-text-centered is-size-3">News Page</h1>
+      <SearchBar />
+      <NewsList />
+    </>
   );
 };
 

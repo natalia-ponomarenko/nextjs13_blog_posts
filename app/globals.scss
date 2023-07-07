@@ -8,6 +8,11 @@ iframe {
   display: none;
 }
 
+.Loader-overlay {
+  position: relative;
+  top: -160px;
+}
+
 .Sidebar {
   overflow: hidden;
   opacity: 0;

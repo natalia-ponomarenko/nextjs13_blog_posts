@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setAuthor } from '@/redux/features/author/author';
-import { Loader } from './Loader/Loader';
+import { Loader } from '../Loader/Loader';
 
 export const UserSelector: React.FC = () => {
   const [expanded, setExpanded] = useState(false);

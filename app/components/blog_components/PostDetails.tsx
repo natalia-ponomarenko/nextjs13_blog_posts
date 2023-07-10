@@ -46,10 +46,8 @@ export const PostDetails: React.FC = () => {
     <div className="content">
       <div className="block">
         <h2>{`#${selectedPost?.id}: ${selectedPost?.title}`}</h2>
-
         <p>{selectedPost?.body}</p>
       </div>
-
       <div className="block">
         {!loaded && <Loader />}
 
@@ -64,7 +62,6 @@ export const PostDetails: React.FC = () => {
         {loaded && !hasError && comments.length > 0 && (
           <>
             <p className="title is-4">Comments:</p>
-
             {comments.map((comment) => (
               <article
                 className="message is-small"
@@ -72,7 +69,6 @@ export const PostDetails: React.FC = () => {
               >
                 <div className="message-header">
                   <a href={`mailto:${comment.email}`}>{comment.name}</a>
-
                   <button
                     type="button"
                     className="delete is-small"
@@ -82,7 +78,6 @@ export const PostDetails: React.FC = () => {
                     delete button
                   </button>
                 </div>
-
                 <div className="message-body">{comment.body}</div>
               </article>
             ))}

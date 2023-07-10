@@ -1,0 +1,18 @@
+$imageHeight: 230px;
+
+.loader-overlay {
+  height: $imageHeight;
+  position: relative;
+  top: -$imageHeight - 5px;
+  display: flex;
+}
+
+.card_image_wrapper {
+  height: $imageHeight;
+}
+
+.card_image {
+  width: 100%;
+  height: $imageHeight;
+  object-fit: cover;
+}

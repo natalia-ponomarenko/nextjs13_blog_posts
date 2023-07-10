@@ -1,7 +1,11 @@
 'use client';
 import classNames from 'classnames';
 import React, { useState } from 'react';
+import FormFieldError from '../FormFieldError';
 import { CommentData } from '@/types/Comment';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+
 
 type Props = {
   onSubmit: (data: CommentData) => Promise<void>;
@@ -92,13 +96,11 @@ export const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
           />
 
           <span className="icon is-small is-left">
-            <i className="fas fa-user" />
+            <FontAwesomeIcon icon={faUser} />
           </span>
 
           {errors.name && (
-            <span className="icon is-small is-right has-text-danger">
-              <i className="fas fa-exclamation-triangle" />
-            </span>
+          <FormFieldError />
           )}
         </div>
 
@@ -125,13 +127,11 @@ export const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
           />
 
           <span className="icon is-small is-left">
-            <i className="fas fa-envelope" />
+            <FontAwesomeIcon icon={faEnvelope} />
           </span>
 
           {errors.email && (
-            <span className="icon is-small is-right has-text-danger">
-              <i className="fas fa-exclamation-triangle" />
-            </span>
+            <FormFieldError />
           )}
         </div>
 

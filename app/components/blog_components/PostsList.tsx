@@ -1,7 +1,5 @@
 'use client';
-
 import classNames from 'classnames';
-import React from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import {
   removeSelectedPost,
@@ -16,7 +14,6 @@ export const PostsList: React.FC = () => {
   return (
     <div>
       <p className="title">Posts:</p>
-
       <table className="table is-fullwidth is-striped is-hoverable is-narrow">
         <thead>
           <tr className="has-background-link-light">

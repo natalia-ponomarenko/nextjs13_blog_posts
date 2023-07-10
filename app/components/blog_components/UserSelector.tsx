@@ -1,13 +1,15 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { setAuthor } from '@/redux/features/author/author';
 import { Loader } from '../Loader/Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+
 
 export const UserSelector: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
-
   const { users, loading, error } = useAppSelector((state) => state.users);
   const selectedUser = useAppSelector((state) => state.author.author);
   const dispatch = useAppDispatch();
@@ -17,16 +19,16 @@ export const UserSelector: React.FC = () => {
       return;
     }
 
-    const handleDocumentClick = () => {
-      setExpanded(false);
-    };
-
     document.addEventListener('click', handleDocumentClick);
 
     return () => {
       document.removeEventListener('click', handleDocumentClick);
     };
   }, [expanded]);
+
+  const handleDocumentClick = () => {
+    setExpanded(false);
+  };
 
   return (
     <div className={classNames('dropdown', { 'is-active': expanded })}>
@@ -43,8 +45,7 @@ export const UserSelector: React.FC = () => {
           <span>{selectedUser?.name || 'Choose a user'}</span>
 
           <span className="icon is-small">
-            <i
-              className="fas fa-angle-down"
+            <FontAwesomeIcon icon={faAngleDown}
               aria-hidden="true"
             />
           </span>

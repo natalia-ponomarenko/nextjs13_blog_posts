@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { formatDate } from '@/utils/helperFunctions';
 import { useEffect, useState } from 'react';
 import { Loader } from '../Loader/Loader';
+import '../../news/styles.scss';
 
 const NewsCard: React.FC<{ article: Article }> = ({ article }) => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
@@ -12,17 +13,23 @@ const NewsCard: React.FC<{ article: Article }> = ({ article }) => {
 
   const fallbackImageSrc = '/images/no-image.jpg';
 
-  const [src, setSrc] = useState<string>(urlToImage ? urlToImage : fallbackImageSrc);
+  const [src, setSrc] = useState<string>(
+    urlToImage ? urlToImage : fallbackImageSrc
+  );
 
   useEffect(() => {
     setSrc(src);
   }, [src]);
 
   return (
-    <div className="column is-4-tablet is-3-desktop">
-      <Link href={url} target="_blank" rel="noopener">
+    <div className="column is-3-desktop is-4-tablet">
+      <Link
+        href={url}
+        target="_blank"
+        rel="noopener"
+      >
         <div className="card">
-          <div style={{ height: '230px' }}>
+          <div className='card_image_wrapper'>
             <Image
               src={src}
               onError={() => setSrc(fallbackImageSrc)}
@@ -37,11 +44,13 @@ const NewsCard: React.FC<{ article: Article }> = ({ article }) => {
               priority={true}
               fetchPriority="high"
               sizes="100vw"
-              style={{ width: '100%', height: '230px', objectFit: 'cover' }}
+              className='card_image'
               onLoad={() => setIsLoaded(true)}
             />
             {!isLoaded && (
-              <div className="loader-overlay Loader-overlay">
+              <div
+                className="loader-overlay"
+              >
                 <Loader />
               </div>
             )}

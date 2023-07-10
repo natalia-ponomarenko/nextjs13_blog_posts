@@ -1,67 +1,64 @@
-import Link from 'next/link';
+'use client';
+import { usePathname } from 'next/navigation';
+import NavLink from './NavLink';
+import { useState } from 'react';
+import classNames from 'classnames';
 
 const NavBar: React.FC = () => {
+  const currentRoute = usePathname();
+  const [isBurgerActive, setBurgerActive] = useState<boolean>(false);
+  const [isMenuActive, setMenuActive] = useState<boolean>(false);
+
+  const handleBurgerClick = () => {
+    setBurgerActive(!isBurgerActive);
+    setMenuActive(!isMenuActive);
+  };
+
   return (
     <nav
-      className="navbar pl-6 is-light"
+      className="navbar pl-6 has-background-link-light"
       role="navigation"
       aria-label="main navigation"
     >
       <div className="navbar-brand">
-        {/* <a className="navbar-item" href="https://bulma.io">
-      <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-    </a> */}
-
         <a
           role="button"
-          className="navbar-burger"
+          className={classNames('navbar-burger', { 'is-active': isBurgerActive })} 
+          onClick={handleBurgerClick}
+          data-target="navMenu"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbar1"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
         </a>
-    
       </div>
 
       <div
-        id="navbar1"
-        className="navbar-menu"
+        id="navMenu"
+        className={classNames('navbar-menu', { 'is-active': isMenuActive })}
       >
         <div className="navbar-start">
-          <Link
+          <NavLink
             href="/"
-            className="navbar-item is-size-5"
+            currentRoute={currentRoute}
           >
             Home
-          </Link>
-
-          <Link
+          </NavLink>
+          <NavLink
             href="/blog"
-            className="navbar-item is-size-5"
+            currentRoute={currentRoute}
           >
             Blog
-          </Link>
-          <Link
+          </NavLink>
+          <NavLink
             href="/news"
-            className="navbar-item is-size-5"
+            currentRoute={currentRoute}
           >
             News
-          </Link>
+          </NavLink>
         </div>
-
-        {/* <div className="navbar-end">
-          <div className="navbar-item">
-            <div className="buttons">
-              <a className="button is-primary">
-                <strong>Sign up</strong>
-              </a>
-              <a className="button is-light">Log in</a>
-            </div>
-          </div>
-        </div> */}
       </div>
     </nav>
   );

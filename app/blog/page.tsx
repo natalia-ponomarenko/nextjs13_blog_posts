@@ -1,8 +1,6 @@
 'use client';
-import React, { useEffect } from 'react';
-import 'bulma/bulma.sass';
-import '@fortawesome/fontawesome-free/css/all.css';
-
+import { useEffect } from 'react';
+import './styles.scss';
 import classNames from 'classnames';
 import { PostsList } from '../components/blog_components/PostsList';
 import { PostDetails } from '../components/blog_components/PostDetails';
@@ -46,7 +44,6 @@ const Blog: React.FC = () => {
             <div className="block">
               <UserSelector />
             </div>
-
             <div className="block">
               {!author && <p>No user selected</p>}
 
@@ -57,14 +54,13 @@ const Blog: React.FC = () => {
               {author && loaded && !hasError && !posts.length && (
                 <Warning text="No posts yet" />
               )}
-              
+
               {author && loaded && !hasError && posts.length > 0 && (
                 <PostsList />
               )}
             </div>
           </div>
         </div>
-
         <div
           className={classNames(
             'tile',

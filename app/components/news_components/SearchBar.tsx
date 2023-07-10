@@ -12,7 +12,8 @@ const SearchBar = () => {
     e.preventDefault();
 
     if (query === '') {
-      return alert('Please fill in the search bar');
+      alert('Please, fill in the search');
+      return;
     }
 
     updateSearchParams();
@@ -34,19 +35,22 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="is-flex is-justify-content-space-between is-flex-column-mobile">
+    <div
+      className="is-flex-desktop is-flex-widescreen
+    is-flex-direction-row-desktop is-justify-content-space-between"
+    >
       <form
         onSubmit={handleSearch}
-        className="is-flex"
+        className="is-flex-desktop is-flex-tablet is-flex-wrap-wrap-mobile is-fullwidth-mobile"
       >
         <input
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search..."
-          className="input is-info mx-1"
+          className="input is-info m-1"
         />
-        <div className="select is-info mx-1">
+        <div className="select is-info m-1">
           <select
             value={language}
             onChange={(e) => setLanguage(e.target.value)}
@@ -62,18 +66,16 @@ const SearchBar = () => {
           </select>
         </div>
 
-        <button
-          className="button is-info mx-1"
-        >
+        <button className="button is-link is-light m-1 is-align-self-flex-end-mobile">
           Search
         </button>
       </form>
-
       <button
         onClick={handleReturn}
-        className="button is-danger is-light mx-1"
+        className="button is-link is-light m-1"
+        title="Return to the top US news"
       >
-        Return to the top US news
+        Top US headlines
       </button>
     </div>
   );

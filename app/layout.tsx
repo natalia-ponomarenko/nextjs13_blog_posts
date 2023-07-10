@@ -1,15 +1,14 @@
-import './globals.scss';
-import { Montserrat } from 'next/font/google';
 import Footer from './components/Footer';
 import { ClientProvider } from '@/redux/services/ClientProvider';
 import { Suspense } from 'react';
 import Loading from './loading';
 import NavBar from './components/NavBar';
-
-const montserrat = Montserrat({
-  weight: ['700', '400'],
-  subsets: ['latin'],
-});
+import { montserrat } from './font';
+import 'bulma/bulma.sass';
+import classNames from 'classnames';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+config.autoAddCss = false;
 
 export const metadata = {
   title: 'Next.js 13 Blog/News',
@@ -23,8 +22,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={montserrat.className}
-        style={{ height: '100vh' }}
+        className={classNames(montserrat.className, 'hero', 'is-fullheight')}
       >
         <Suspense fallback={<Loading />}>
           <NavBar />

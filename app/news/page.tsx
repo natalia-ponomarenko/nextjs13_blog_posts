@@ -18,13 +18,11 @@ const News: React.FC<Props> = async ({ searchParams }) => {
 
   store.dispatch(setNews(news));
 
-  const newsList = store.getState().news.setNews;
-
   return (
     <>
       <h1 className="title has-text-centered is-size-3">News Page</h1>
       <SearchBar />
-      <NewsList news={newsList} />
+      <NewsList />
     </>
   );
 };

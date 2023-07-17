@@ -5,3 +5,11 @@ export const formatDate = (dateString: string) => {
   const year = date.getFullYear();
   return `${month}/${day}/${year}`;
 };
+
+export const formatTitle = (title: string) => {
+  if (title.length > 100) {
+    return title.slice(0, 100) + '...';
+  } else {
+    return title;
+  }
+};

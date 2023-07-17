@@ -1,6 +1,7 @@
 export const API_KEY = '12891bf384c1432dbe12ed0b30fa5caf';
-export const BASE_API = 'https://newsapi.org/v2/';
+export const BASE_NEWS_API = 'https://newsapi.org/v2/';
 export const TOP_US_HEADLINES = `top-headlines?country=us&apiKey=${API_KEY}`;
+export const BASE_POSTS_URL = 'https://mate.academy/students-api';
 
 export const LANGUAGES = {
   ar: 'Arabic',

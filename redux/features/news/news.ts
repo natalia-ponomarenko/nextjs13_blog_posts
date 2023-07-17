@@ -3,12 +3,12 @@ import { News } from "@/types/News";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type NewsState = {
-  setNews: News | null;
+export type NewsState = {
+  news: News | null;
 };
 
 const initialState: NewsState = {
-  setNews: null
+  news: null
 };
 
 export const newsSlice = createSlice({
@@ -16,7 +16,7 @@ export const newsSlice = createSlice({
   initialState,
   reducers: {
     setNews: (state, action: PayloadAction<News>) => {
-      state.setNews= action.payload;
+      state.news = action.payload;
     }
   }
 });

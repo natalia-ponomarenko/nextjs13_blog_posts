@@ -2,7 +2,7 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { User } from '@/types/User';
 
-type AuthorState = {
+export type AuthorState = {
   author: User | null;
 };
 

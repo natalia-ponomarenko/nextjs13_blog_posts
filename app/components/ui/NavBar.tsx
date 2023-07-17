@@ -23,7 +23,9 @@ const NavBar: React.FC = () => {
       <div className="navbar-brand">
         <a
           role="button"
-          className={classNames('navbar-burger', { 'is-active': isBurgerActive })} 
+          className={classNames('navbar-burger', {
+            'is-active': isBurgerActive,
+          })}
           onClick={handleBurgerClick}
           data-target="navMenu"
           aria-label="menu"

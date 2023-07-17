@@ -1,15 +1,7 @@
-import { Filter } from "@/types/Filter";
-import { API_KEY, BASE_API, TOP_US_HEADLINES } from "@/utils/constants";
+import { Filter } from '@/types/Filter';
+import { newsClient } from '../utils/fetchNews';
+import { News } from '@/types/News';
 
-export const getNewsData = async (filters: Filter) => {
-  let url = BASE_API;
-  let { query, language } = filters;
-
-  query
-    ? (url += `everything?q=${query}&language=${language}&searchIn=title&sortBy=popularity&apiKey=${API_KEY}`)
-    : (url += TOP_US_HEADLINES);
-
-  const res = await fetch(url);
-  return res.json();
+export const getNewsData = (filters: Filter) => {
+  return newsClient.get<News>(filters);
 };
-

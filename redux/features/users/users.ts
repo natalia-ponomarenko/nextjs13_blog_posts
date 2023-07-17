@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { User } from '@/types/User';
 import { getUsers } from '@/api/users';
 
-type UsersState = {
+export type UsersState = {
   users: User[];
   loading: boolean;
   error: string;

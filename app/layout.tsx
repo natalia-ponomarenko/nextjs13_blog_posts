@@ -1,8 +1,8 @@
-import Footer from './components/Footer';
+import Footer from './components/ui/Footer';
 import { ClientProvider } from '@/redux/services/ClientProvider';
 import { Suspense } from 'react';
 import Loading from './loading';
-import NavBar from './components/NavBar';
+import NavBar from './components/ui/NavBar';
 import { montserrat } from './font';
 import 'bulma/bulma.sass';
 import classNames from 'classnames';

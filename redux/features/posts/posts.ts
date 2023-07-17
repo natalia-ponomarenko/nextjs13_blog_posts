@@ -3,7 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Post } from '@/types/Post';
 import { getUserPosts } from '@/api/posts';
 
-type PostsState = {
+export type PostsState = {
   items: Post[];
   loaded: boolean;
   hasError: boolean;

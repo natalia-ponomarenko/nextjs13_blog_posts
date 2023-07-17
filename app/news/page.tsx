@@ -1,6 +1,6 @@
 import { getNewsData } from '@/api/news';
-import NewsList from '../components/news_components/NewsList';
-import SearchBar from '../components/news_components/SearchBar';
+import NewsList from '../components/NewsComponents/NewsList';
+import SearchBar from '../components/NewsComponents/SearchBar';
 import { store } from '@/redux/store';
 import { setNews } from '@/redux/features/news/news';
 import { Filter } from '@/types/Filter';

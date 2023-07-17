@@ -1,5 +1,7 @@
-import { Loader } from "./components/Loader/Loader";
+import Loader from './components/ui/Loader/Loader';
 
-export default function Loading() {
-  return <Loader />
+function Loading() {
+  return <Loader />;
 }
+
+export default Loading;

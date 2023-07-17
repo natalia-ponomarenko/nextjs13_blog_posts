@@ -1,10 +1,10 @@
 import { store } from '@/redux/store';
 import { Article } from '@/types/News';
 import NewsCard from './NewsCard';
-import Warning from '../Warning';
+import Warning from '../ui/Warning';
 
 const NewsList: React.FC = () => {
-  const news = store.getState().news.setNews;
+  const news = store.getState().news.news;
   const listOfNews = news?.articles;
   const IsListEmpty = news === null || news.totalResults === 0;
 
@@ -20,9 +20,7 @@ const NewsList: React.FC = () => {
           );
         })
       ) : (
-        <Warning
-          text=" No relevant news found. Try changing the language or check the spelling"
-        />
+        <Warning text=" No relevant news found. Try changing the language or check the spelling" />
       )}
     </div>
   );

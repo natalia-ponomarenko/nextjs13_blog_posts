@@ -3,7 +3,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Comment } from '@/types/Comment';
 import { createComment, getPostComments } from '@/api/comments';
 
-type CommentsState = {
+export type CommentsState = {
   items: Comment[];
   loaded: boolean;
   hasError: boolean;

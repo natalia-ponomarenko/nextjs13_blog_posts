@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { LANGUAGES } from '@/utils/constants';
+import NewsButton from '../ui/NewsButton';
 
 const SearchBar = () => {
   const [query, setQuery] = useState('');
@@ -65,21 +66,21 @@ const SearchBar = () => {
             ))}
           </select>
         </div>
-
-        <button className="button is-link is-light m-1 is-align-self-flex-end-mobile">
+        <NewsButton
+          className="is-align-self-flex-end-mobile"
+          title="Search news"
+        >
           Search
-        </button>
+        </NewsButton>
       </form>
-      <button
-        onClick={handleReturn}
-        className="button is-link is-light m-1"
-        title="Return to the top US news"
-      >
-        Top US headlines
-      </button>
+      <NewsButton
+          title="Return to the top US news"
+          onClick={handleReturn}
+        >
+          Top US headlines
+        </NewsButton>
     </div>
   );
 };
 
 export default SearchBar;
-

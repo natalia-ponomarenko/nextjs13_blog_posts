@@ -1,15 +1,15 @@
 'use client';
 import classNames from 'classnames';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useCustomSelector } from '@/redux/hooks';
 import {
   removeSelectedPost,
   setSelectedPost,
 } from '@/redux/features/selectedPost/selectedPost';
 
-export const PostsList: React.FC = () => {
+const PostsList: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { selectedPost } = useAppSelector((state) => state.selectedPost);
-  const { items: posts } = useAppSelector((state) => state.posts);
+  const { selectedPost } = useCustomSelector((state) => state.selectedPost);
+  const { items: posts } = useCustomSelector((state) => state.posts);
 
   return (
     <div>
@@ -52,3 +52,5 @@ export const PostsList: React.FC = () => {
     </div>
   );
 };
+
+export default PostsList;

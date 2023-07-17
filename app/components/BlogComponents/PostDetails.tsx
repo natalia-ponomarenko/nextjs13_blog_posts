@@ -1,21 +1,20 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useCustomSelector } from '@/redux/hooks';
 import * as commentsActions from '@/redux/features/comments/comments';
 import * as commentsApi from '@/api/comments';
 import { CommentData } from '@/types/Comment';
-import { NewCommentForm } from './NewCommentForm';
-import { Loader } from '../Loader/Loader';
+import NewCommentForm from './NewCommentForm';
+import Loader from '../ui/Loader/Loader';
 
-export const PostDetails: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const { selectedPost } = useAppSelector((state) => state.selectedPost);
+const PostDetails: React.FC = () => {
+  const { selectedPost } = useCustomSelector((state) => state.selectedPost);
   const {
     items: comments,
     loaded,
     hasError,
-  } = useAppSelector((state) => state.comments);
-
+  } = useCustomSelector((state) => state.comments);
+  const dispatch = useAppDispatch();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -74,9 +73,7 @@ export const PostDetails: React.FC = () => {
                     className="delete is-small"
                     aria-label="delete"
                     onClick={() => deleteComment(comment.id)}
-                  >
-                    delete button
-                  </button>
+                  />
                 </div>
                 <div className="message-body">{comment.body}</div>
               </article>
@@ -102,3 +99,4 @@ export const PostDetails: React.FC = () => {
   );
 };
 
+export default PostDetails;

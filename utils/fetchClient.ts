@@ -1,10 +1,4 @@
-const BASE_URL = 'https://mate.academy/students-api';
-
-function wait(delay: number) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
+import { BASE_POSTS_URL } from "./constants";
 
 type RequestMethod = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
@@ -13,7 +7,6 @@ function request<T>(
   method: RequestMethod = 'GET',
   data: any = null
 ): Promise<T> {
-  // eslint-disable-next-line no-undef
   const options: RequestInit = { method };
 
   if (data) {
@@ -23,9 +16,7 @@ function request<T>(
     };
   }
 
-  return wait(300)
-    .then(() => fetch(BASE_URL + url, options))
-    .then((response) => response.json());
+  return fetch(BASE_POSTS_URL + url, options).then((response) => response.json());
 }
 
 export const client = {

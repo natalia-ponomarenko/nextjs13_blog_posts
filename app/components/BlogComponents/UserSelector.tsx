@@ -1,17 +1,17 @@
 'use client';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppDispatch, useCustomSelector } from '@/redux/hooks';
 import { setAuthor } from '@/redux/features/author/author';
-import { Loader } from '../Loader/Loader';
+import Loader from '../ui/Loader/Loader';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { User } from '@/types/User';
 
-
-export const UserSelector: React.FC = () => {
+const UserSelector: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
-  const { users, loading, error } = useAppSelector((state) => state.users);
-  const selectedUser = useAppSelector((state) => state.author.author);
+  const { users, loading, error } = useCustomSelector((state) => state.users);
+  const selectedUser = useCustomSelector((state) => state.author.author);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -45,7 +45,8 @@ export const UserSelector: React.FC = () => {
           <span>{selectedUser?.name || 'Choose a user'}</span>
 
           <span className="icon is-small">
-            <FontAwesomeIcon icon={faAngleDown}
+            <FontAwesomeIcon
+              icon={faAngleDown}
               aria-hidden="true"
             />
           </span>
@@ -60,7 +61,7 @@ export const UserSelector: React.FC = () => {
         <div className="dropdown-content">
           {loading && <Loader />}
           {!error ? (
-            users.map((user) => (
+            users?.map((user: User) => (
               <a
                 key={user.id}
                 href={`#user-${user.id}`}
@@ -82,3 +83,5 @@ export const UserSelector: React.FC = () => {
     </div>
   );
 };
+
+export default UserSelector;

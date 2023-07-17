@@ -2,16 +2,16 @@
 import { useEffect } from 'react';
 import './styles.scss';
 import classNames from 'classnames';
-import { PostsList } from '../components/blog_components/PostsList';
-import { PostDetails } from '../components/blog_components/PostDetails';
-import { UserSelector } from '../components/blog_components/UserSelector';
-import { Loader } from '../components/Loader/Loader';
+import PostsList from '../components/BlogComponents/PostsList';
+import PostDetails from '../components/BlogComponents/PostDetails';
+import UserSelector from '../components/BlogComponents/UserSelector';
+import Loader from '../components/ui/Loader/Loader';
+import Warning from '../components/ui/Warning';
+import DangerWarning from '../components/ui/DangerWarning';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import * as usersActions from '@/redux/features/users/users';
 import * as postsActions from '@/redux/features/posts/posts';
 import { removeSelectedPost } from '@/redux/features/selectedPost/selectedPost';
-import Warning from '../components/Warning';
-import DangerWarning from '../components/DangerWarning';
 
 const Blog: React.FC = () => {
   const dispatch = useAppDispatch();

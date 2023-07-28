@@ -1,9 +1,7 @@
-import { Filter } from "@/types/Filter";
-import { API_KEY, BASE_NEWS_API, TOP_US_HEADLINES } from "@/utils/constants";
+import { Filter } from '@/types/Filter';
+import { API_KEY, BASE_NEWS_API, TOP_US_HEADLINES } from '@/utils/constants';
 
-function requestNews<T>(
-  filters: Filter
-): Promise<T> {
+function requestNews<T>(filters: Filter): Promise<T> {
   let url = BASE_NEWS_API;
   let { query, language } = filters;
 
@@ -16,4 +14,4 @@ function requestNews<T>(
 
 export const newsClient = {
   get: <T>(filters: Filter) => requestNews<T>(filters),
-}
+};

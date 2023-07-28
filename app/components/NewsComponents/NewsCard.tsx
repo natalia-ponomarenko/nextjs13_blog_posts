@@ -46,6 +46,7 @@ const NewsCard: React.FC<{ article: Article }> = ({ article }) => {
               fetchPriority="high"
               sizes="100vw"
               className="card_image"
+              unoptimized
               onLoad={() => setIsLoaded(true)}
             />
             {!isLoaded && (

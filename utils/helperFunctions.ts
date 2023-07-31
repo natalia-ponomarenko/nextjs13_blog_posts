@@ -7,9 +7,9 @@ export const formatDate = (dateString: string) => {
 };
 
 export const formatTitle = (title: string) => {
-  if (title.length > 100) {
-    return title.slice(0, 100) + '...';
+  if (title.length > 50) {
+    return title.slice(0, 50) + '...';
   }
-  return title;
+    return title;
 };
 

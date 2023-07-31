@@ -14,13 +14,18 @@ const NavBar: React.FC = () => {
     setMenuActive(!isMenuActive);
   };
 
+  const handleMenuLinkClick = () => {
+    setBurgerActive(false);
+    setMenuActive(false);
+  };
+
   return (
     <nav
       className="navbar pl-6 has-background-link-light"
       role="navigation"
       aria-label="main navigation"
     >
-      <div className="navbar-brand">
+      <div className="navbar-brand has-background-link-light">
         <a
           role="button"
           className={classNames('navbar-burger', {
@@ -36,12 +41,14 @@ const NavBar: React.FC = () => {
           <span aria-hidden="true"></span>
         </a>
       </div>
-
       <div
         id="navMenu"
         className={classNames('navbar-menu', { 'is-active': isMenuActive })}
       >
-        <div className="navbar-start">
+        <div
+          className="navbar-start has-text-centered"
+          onClick={handleMenuLinkClick}
+        >
           <NavLink
             href="/"
             currentRoute={currentRoute}
@@ -67,4 +74,3 @@ const NavBar: React.FC = () => {
 };
 
 export default NavBar;
-

@@ -50,7 +50,7 @@ const NewsCard: React.FC<{ article: Article }> = ({ article }) => {
               onLoad={() => setIsLoaded(true)}
             />
             {!isLoaded && (
-              <div className="loader-overlay">
+              <div className="loader_overlay">
                 <Loader />
               </div>
             )}

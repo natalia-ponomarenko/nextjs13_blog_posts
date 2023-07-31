@@ -1,4 +1,3 @@
-/* eslint-disable no-param-reassign */
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Comment } from '@/types/Comment';
 import { createComment, getPostComments } from '@/api/comments';

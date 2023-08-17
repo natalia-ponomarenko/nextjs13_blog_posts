@@ -9,7 +9,7 @@ function requestNews<T>(filters: Filter): Promise<T> {
     ? (url += `everything?q=${query}&language=${language}&searchIn=title&sortBy=popularity&apiKey=${API_KEY}`)
     : (url += TOP_US_HEADLINES);
 
-  return fetch(url).then((response) => response.json());
+  return fetch(url, { next: { revalidate: 10 } }).then((response) => response.json());
 }
 
 export const newsClient = {

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useCustomSelector } from '@/redux/hooks';
 import { setAuthor } from '@/redux/features/author/author';
-import Loader from '../ui/Loader/Loader';;
+import Loader from '../ui/Loader/Loader';
 import { User } from '@/types/User';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';

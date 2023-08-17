@@ -3,10 +3,12 @@ import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { useAppDispatch, useCustomSelector } from '@/redux/hooks';
 import { setAuthor } from '@/redux/features/author/author';
-import Loader from '../ui/Loader/Loader';
+import Loader from '../ui/Loader/Loader';;
+import { User } from '@/types/User';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import { User } from '@/types/User';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+
 
 const UserSelector: React.FC = () => {
   const [expanded, setExpanded] = useState(false);
@@ -46,7 +48,7 @@ const UserSelector: React.FC = () => {
 
           <span className="icon is-small">
             <FontAwesomeIcon
-              icon={faAngleDown}
+              icon={faAngleDown as IconProp}
               aria-hidden="true"
             />
           </span>

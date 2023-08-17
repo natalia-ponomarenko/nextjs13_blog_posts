@@ -5,6 +5,7 @@ import { faUser, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import FormInput from '../ui/FormInput';
 import FormButton from '../ui/FormButton';
 import FormTextArea from '../ui/FormTextArea';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 type Props = {
   onSubmit: (data: CommentData) => Promise<void>;
@@ -81,7 +82,7 @@ const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
           label="Author Name"
           placeholder="Name Surname"
           error={nameError}
-          icon={faUser}
+          icon={faUser as IconProp}
           value={name}
           onChange={handleChange}
         />
@@ -93,7 +94,7 @@ const NewCommentForm: React.FC<Props> = ({ onSubmit }) => {
           label="Author Email"
           placeholder="email@test.com"
           error={emailError}
-          icon={faEnvelope}
+          icon={faEnvelope as IconProp}
           value={email}
           onChange={handleChange}
         />

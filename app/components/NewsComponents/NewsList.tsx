@@ -1,17 +1,32 @@
 import { store } from '@/redux/store';
-import { Article } from '@/types/News';
+import { Article, News } from '@/types/News';
 import NewsCard from './NewsCard';
 import Warning from '../ui/Warning';
+import { removeDuplicateArticles } from '@/utils/helperFunctions';
 
 const NewsList: React.FC = () => {
   const news = store.getState().news.news;
   const listOfNews = news?.articles;
   const IsListEmpty = news === null || news.totalResults === 0;
 
+  const filteredNews = listOfNews?.filter((article: Article) => {
+    return (
+      article.title !== null &&
+      article.url !== null
+    );
+  });
+
+  let uniqueArrayOfNews;
+
+  if(filteredNews) {
+    uniqueArrayOfNews = removeDuplicateArticles(filteredNews);
+  }
+
+
   return (
     <div className="columns is-flex-wrap-wrap mt-5 is-justify-content-center">
       {!IsListEmpty ? (
-        listOfNews?.map((article: Article) => {
+        uniqueArrayOfNews?.map((article: Article) => {
           return (
             <NewsCard
               key={article.url}
